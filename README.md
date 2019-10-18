@@ -1,2 +1,3 @@
-# OmniStack-30-09-04-10
+# OmniStack AirCnC
+
 Repositório para estudo da semana OmniStack
