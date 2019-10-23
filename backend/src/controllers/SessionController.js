@@ -1,15 +1,25 @@
-
+const User = require('../models/User');
 
 
 // index, show, store, update, destroy
 
+
 module.exports = {
     index(req, res){
-        return res.send('Hello World!')
+        const user = User.find();
+
+        return res.json(user);
     },
 
-   store(req, res){
-       return res.json({'message' : 'hello world from store'})
+   async store(req, res){
+        const { email } = req.body;
+        
+        let user = await User.findOne({ email });
+
+        if(!user) {
+            user = await User.create(req.body);
+        }
+        return res.json(user);
     }
 
 }
