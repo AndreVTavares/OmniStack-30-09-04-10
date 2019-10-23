@@ -10,7 +10,10 @@ module.exports = {
             date,
             user: user_id,
             spot: spot_id
-        })
+        });
+
+        await booking.populate('spot').populate('user').execPopulate();
+
         return res.json(booking);
     }
 }
