@@ -3,6 +3,9 @@ const SessionController = require('./controllers/SessionController');
 
 const routes = express.Router();
 
-routes.get('/sessions', SessionController.store);
+
+routes.get('/sessions', SessionController.index);
+routes.post('/sessions', SessionController.store);
+
 
 module.exports = routes;
