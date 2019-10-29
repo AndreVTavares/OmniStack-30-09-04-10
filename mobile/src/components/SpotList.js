@@ -37,7 +37,7 @@ function SpotList({ tech, navigation }) {
                     <View style={styles.listItem}>
                         <Image 
                         style={styles.thumbnail} 
-                        source={{ uri: "http://localhost:3333/files/TelaDeSpot3.png" }} 
+                        source={{ uri: item.thumbnail_url }} 
                         />
                         <Text style={styles.company}>{item.company}</Text>
                         <Text style={styles.price}>{item.price ? `R$${item.price}/dia` : 'GRATUITO'}</Text>

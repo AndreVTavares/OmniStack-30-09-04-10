@@ -1,22 +1,35 @@
 import React, { useState } from 'react';
-import { SafeAreaView, AsyncStorage, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+import { SafeAreaView, Alert, AsyncStorage, Text, TextInput, TouchableOpacity, StyleSheet } from 'react-native';
+
+import api from '../services/api';
 
 export default function Book({ navigation }) {
     const [date, setDate] = useState('');
     
     const id = navigation.getParam('id');
 
-    function handleSubmit(){
+    async function handleSubmit(){
 
+        const user_id = await AsyncStorage.getItem('user');
+
+        await api.post(`/spots/${id}/bookings`, {
+            date
+        }, {
+            headers: { user_id }
+        })
+
+        Alert.alert('Solicitação de reserva enviada.');
+
+        navigation.navigate('List');
     }
 
     function handleCancel(){
-
+        navigation.navigate('List');
     }
 
     return (
         <SafeAreaView style={styles.container}>
-            <Text style={styles.label}>Data de Interesse *</Text>
+            <Text style={styles.label}>DATA DE INTERESSE *</Text>
             <TextInput
                 style={styles.input}
                 placeholder="Qual data você quer reservar?"
@@ -40,6 +53,10 @@ export default function Book({ navigation }) {
 }
 
 const styles = StyleSheet.create({
+    container: {
+        margin: 30,
+        marginTop: 50,
+    },
     
     label: {
         fontWeight: 'bold',
@@ -69,6 +86,7 @@ const styles = StyleSheet.create({
 
     cancelButton: {
         backgroundColor: '#ccc',
+        marginTop: 10,
     },
 
     buttonText: {
