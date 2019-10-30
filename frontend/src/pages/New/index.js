@@ -47,7 +47,7 @@ export default function New({ history }) {
                 <img src={camera} alt="Select img"/>
             </label>
 
-            <label htmlfor="company">EMPRESA *</label>
+            <label htmlFor="company">EMPRESA *</label>
             <input 
             id="company"
             placeholder="Sua Empresa"
@@ -55,7 +55,7 @@ export default function New({ history }) {
             onChange = {event => setCompany(event.target.value)}
             />
 
-            <label htmlfor="techs">TECNOLOGIAS * <span>(separadas por vírgula)</span></label>
+            <label htmlFor="techs">TECNOLOGIAS * <span>(separadas por vírgula)</span></label>
             <input 
             id="techs"
             placeholder="Quais Tecnologias utilizadas?"
@@ -63,7 +63,7 @@ export default function New({ history }) {
             onChange = {event => setTechs(event.target.value)}
             />
 
-            <label htmlfor="price">VALOR DA DIÁRIA * <span>(deixar em branco para GRATUITO)</span></label>
+            <label htmlFor="price">VALOR DA DIÁRIA * <span>(deixar em branco para GRATUITO)</span></label>
             <input 
             id="price"
             placeholder="Valor cobrado por dia."
