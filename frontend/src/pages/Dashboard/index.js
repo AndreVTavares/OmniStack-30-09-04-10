@@ -4,6 +4,7 @@ import socketio from 'socket.io-client';
 import api from '../../services/api'
 
 import './styles.css';
+import Axios from 'axios';
 
 export default function Dashboard() {
     const [spots, setSpots] = useState([]);
@@ -32,6 +33,18 @@ export default function Dashboard() {
         loadSpots();
     }, []);
 
+    async function handleAccept(id){
+        await api.post(`/bookings/${id}/approval`)
+
+        setRequests(requests.filter(request => request._id !== id));
+    }
+
+    async function handleReject(id){
+        await api.post(`/bookings/${id}/rejection`)
+
+        setRequests(requests.filter(request => request._id !== id));
+    }
+
     return (
         <>
             <ul className="notifications">
@@ -40,8 +53,8 @@ export default function Dashboard() {
                         <p>
                             <strong>{request.user.email}</strong> está solicitando uma reserva em <strong>{request.spot.company}</strong> para a data: <strong>{request.date}</strong> 
                         </p>
-                        <button className="accept">ACEITAR</button>
-                        <button className="reject">REJEITAR</button>
+                        <button className="accept" onClick={() => handleAccept(request._id)}>ACEITAR</button>
+                        <button className="reject" onClick={() => handleReject(request._id)}>REJEITAR</button>
                     </li>
                 ))}
             </ul>
